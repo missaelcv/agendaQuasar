@@ -50,16 +50,20 @@
         :rules="[ val => val && val.length > 0 || 'No Puede estar Vacio']"/>
        
 
-        <q-input class= "col-12 col-sm-6"
+        <q-select class= "col-12 col-sm-6"
         filled
-        v-model="cuidad"
-        label="Escriba su Cuidad*"
+        v-model="seleccion"
+        label="Seleccione una Cuidad*"
         hint="City"
         lazy-rules
-        :rules="[ val => val && val.length > 0 || 'No Puede estar Vacio']"/>
+        :rules="[ val => val && val.length > 0 || 'Campo Vacio']"
+         standout
+         :options="opciones"/>
+
+
+       
+
          
-
-
       <q-input class= "col-12 col-sm-6"
         filled
         type="number"
@@ -69,6 +73,7 @@
         :rules="[
           val => val !== null && val !== '' || 'No puede estar vacio',
           val => val > 0 && val < 100 || 'Please type a real age']" />
+
 
         <q-input class= "col-12 col-sm-6"
         filled
@@ -86,7 +91,7 @@
 
       <div>
         <q-btn label="Submit" type="submit" color="primary"/>
-        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+        <q-btn label="Reset" outline  type="reset" color="primary" flat class="q-ml-sm" :ripple="false" />
       </div>
     </q-form>
 
@@ -95,9 +100,17 @@
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
     setup() {
+        const seleccion = ref (null)
+
+        const opciones = ["Santiago,", "Santo Domingo", "La Vega", "San Francisco de Mácoris"];
         
+        return {
+            seleccion,
+            opciones
+        }
     },
 }
 </script>

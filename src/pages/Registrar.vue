@@ -15,14 +15,13 @@
 
  <div class="row q-col-gutter-md">
       <q-input class= "col-12 col-sm-6"
-        filled
-        v-model="name"
+      filled
+        v-model.trim="name"
         label="Escriba el Nombre*"
         hint="Name"
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'No Puede estar Vacio']"/>
         
-
         <q-input class= "col-12 col-sm-6"
         filled
         v-model="apellido"
@@ -60,25 +59,11 @@
          standout
          :options="opciones"/>
 
-
-       
-
          
-      <q-input class= "col-12 col-sm-6"
-        filled
-        type="number"
-        v-model="numbe"
-        label="Telefono Movil *"
-        lazy-rules
-        :rules="[
-          val => val !== null && val !== '' || 'No puede estar vacio',
-          val => val > 0 && val < 100 || 'Please type a real age']" />
-
-
         <q-input class= "col-12 col-sm-6"
         filled
         type="number"
-        v-model="numbe2"
+        v-model="numbe"
         label="Telefono Residencial *"
         lazy-rules
         :rules="[
@@ -86,8 +71,10 @@
           val => val > 0 && val < 100 || 'Please type a real age']" />
            </div>
 
-       
-      <q-toggle v-model="accept" label="Desea aceptar los términos" />
+      <q-toggle
+        label="Aceptar los las condiciones"
+        v-model="terminos"
+        class="col-12" />
 
       <div>
         <q-btn label="Submit" type="submit" color="primary"/>
@@ -106,10 +93,16 @@ export default {
         const seleccion = ref (null)
 
         const opciones = ["Santiago,", "Santo Domingo", "La Vega", "San Francisco de Mácoris"];
+
+        const terminos = ref(false)
+
+
+         const name = ref([]);
         
         return {
             seleccion,
-            opciones
+            opciones,
+            terminos
         }
     },
 }

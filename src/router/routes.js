@@ -4,8 +4,16 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: '/registrar', component: () => import('pages/Registrar.vue') }
+      
+      { path: '', component: () => import('pages/Index.vue'),
+    meta : {
+      title : 'Inicio'
+    } },
+
+      { path: '/registrar', component: () => import('pages/Registrar.vue'),
+    meta : {
+      title : 'Registrar'
+    } }
     ]
   },
 
@@ -18,3 +26,4 @@ const routes = [
 ]
 
 export default routes
+
